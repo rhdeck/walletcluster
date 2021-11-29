@@ -14,13 +14,14 @@ console.log(
   commander.endBlock,
   commander.args
 );
-getIntersectingWallets({
-  tokenAddresses: commander.args,
-  startBlock: commander.startBlock,
-  endBlock: commander.endBlock,
-}).then(async (wallets) => {
-  console.log("I got intersecting wallets", wallets);
-});
-// console.log("This is commander", commander);
-
+if (!commander.isDocumenting) {
+  getIntersectingWallets({
+    tokenAddresses: commander.args,
+    startBlock: commander.startBlock,
+    endBlock: commander.endBlock,
+  }).then(async (wallets) => {
+    console.log("I got intersecting wallets", wallets);
+  });
+  // console.log("This is commander", commander);
+}
 export { commander };

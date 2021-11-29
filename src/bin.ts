@@ -7,20 +7,16 @@ commander.description(
 commander.arguments("<tokenAddresses...>");
 commander.option("-s --startBlock <startblock>", "Starting block", "900000");
 commander.option("-e --endBlock <endblock>", "Starting block", "latest");
+commander.option("-v --verbose");
 commander.parse(process.argv);
-console.log(
-  "I have arguments",
-  commander.startBlock,
-  commander.endBlock,
-  commander.args
-);
 if (!commander.isDocumenting) {
   getIntersectingWallets({
     tokenAddresses: commander.args,
     startBlock: commander.startBlock,
     endBlock: commander.endBlock,
+    debugMode: !!commander.verbose,
   }).then(async (wallets) => {
-    console.log("I got intersecting wallets", wallets);
+    console.log(JSON.stringify(wallets, null, 2));
   });
   // console.log("This is commander", commander);
 }

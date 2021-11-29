@@ -17,7 +17,7 @@
     "prepublishOnly": "yarn build && yarn docs && git commit README.md -m \"docs: updating docs\" && git push",
     "watch": "livelink watch",
     "prepare": "install-peers",
-    "run": "ts-node src/bin.ts"
+    "execute": "ts-node src/bin.ts"
   },
   "repository": {
     "type": "git",

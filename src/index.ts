@@ -8,11 +8,13 @@ export const getIntersectingWallets = async (opts: {
   tokenAddresses: string[];
   startBlock: number;
   endBlock: number | "latest";
+  debugMode?: boolean;
 }) => {
-  const { tokenAddresses, startBlock, endBlock } = opts;
+  const { tokenAddresses, startBlock, endBlock, debugMode } = opts;
   const promises = tokenAddresses.map(async (tokenAddress, index) => {
     await sleep(index * 10000);
-    console.log("Fetching for tokenAddress", tokenAddress, new Date());
+    if (debugMode)
+      console.log("Fetching for tokenAddress", tokenAddress, new Date());
     const response = await fetch(
       `${base}api?module=account&action=txlist&address=${tokenAddress}&startblock=${startBlock}&endblock=${endBlock}&sort=asc&apikey=${process.env.ETHERSCAN_API_KEY}`
     );
